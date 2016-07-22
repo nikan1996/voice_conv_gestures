@@ -23,8 +23,8 @@ for name in Names:
 	count = 0
 
 	for filename in FileList:
-		count += 1
-		if count % 3 == 0: # 选择序列内图片个数
+			count += 1
+		
 			label = int(filename.split('\\')[1]) # 如果是linux下 \\改为/
 
 			Im = Image.open(filename)
@@ -32,12 +32,12 @@ for name in Names:
 			pixel = Im.load()
 
 			width, height = Im.size
-
-			for x in range(0,width):
-				for y in range(0,height):
-					data_image.append(pixel[y,x])
-
+			
 			data_label.append(label) # labels start (one unsigned byte each)
+		if count % 3 == 0: # 选择序列内图片个数	
+		for x in range(0,width):
+			for y in range(0,height):
+				data_image.append(pixel[y,x])
 
 	hexval = "{0:#0{1}x}".format(len(FileList),6) # number of files in HEX
 
